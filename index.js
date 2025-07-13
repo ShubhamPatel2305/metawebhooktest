@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 // Set your verify token here or use an environment variable
 const verifyToken = process.env.VERIFY_TOKEN || "my_verify_token";
 
-app.get('/webhook', (req, res) => {
+app.get('/', (req, res) => {
   const { 'hub.mode': mode, 'hub.challenge': challenge, 'hub.verify_token': token } = req.query;
 
   if (mode === 'subscribe' && token === verifyToken) {
@@ -17,7 +17,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-app.post('/webhook', express.json(), (req, res) => {
+app.post('/', express.json(), (req, res) => {
   console.log(req.body); // process leadgen_id
   res.sendStatus(200);
 });
